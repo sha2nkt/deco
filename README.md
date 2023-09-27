@@ -15,3 +15,31 @@ python inference.py \
     --img_src example_images \
     --out_dir demo_out \
 ```
+
+## Citing
+If you find this code useful for your research, please consider citing the following paper:
+
+```bibtex
+@InProceedings{Tripathi_2023_ICCV,
+    author    = {Tripathi, Shashank and Chatterjee, Agniv and Passy, Jean-Claude and Yi, Hongwei and Tzionas, Dimitrios and Black, Michael J.},
+    title     = {DECO: Dense Estimation of 3D Human-Scene Contact In The Wild},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {8001-8013}
+}
+```
+
+### License
+
+See [LICENSE](LICENSE).
+
+### Acknowledgments
+
+We sincerely thank Alpar Cseke for his contributions to DAMON data collection and PHOSA evaluations, Sai K. Dwivedi for facilitating PROX downstream experiments, Xianghui Xie for his generous help with CHORE evaluations, Lea Muller for her help in initiating the contact annotation tool, Chun-Hao P. Huang for RICH discussions and Yixin Chen for details about the HOT paper. We are grateful to Mengqin Xue and Zhenyu Lou for their collaboration in BEHAVE evaluations, Joachim Tesch and Nikos Athanasiou for insightful visualization advice, and Tsvetelina Alexiadis for valuable data collection guidance. Their invaluable contributions enriched this research significantly. We also thank Benjamin Pellkofer for help with the website and IT support. This work was funded by the International Max Planck Research School for Intelligent Systems (IMPRS-IS).
+
+### Contact
+
+For technical questions, please create an issue. For other questions, please contact `deco@tue.mpg.de`.
+
+For commercial licensing, please contact `ps-licensing@tue.mpg.de`.
