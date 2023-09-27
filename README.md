@@ -1,7 +1,6 @@
 # DECO: Dense Estimation of 3D Human-Scene COntact in the Wild
 Code repository for the paper:
 **DECO: Dense Estimation of 3D Human-Scene COntact in the Wild**
-ICCV 2023 (Oral)
 
 [Shashank Tripathi](https://sha2nkt.github.io/), [Agniv Chatterjee](https://ac5113.github.io/), [Jean-Claude Passy](https://is.mpg.de/person/jpassy), [Hongwei Yi](https://xyyhw.top/), [Dimitrios Tzionas](https://ps.is.mpg.de/person/dtzionas), [Michael J. Black](https://ps.is.mpg.de/person/black)
 
