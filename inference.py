@@ -14,7 +14,6 @@ import trimesh
 import pyrender
 
 from models.deco import DECO
-from common import constants
 
 os.environ['PYOPENGL_PLATFORM'] = 'egl'
 
@@ -185,8 +184,8 @@ def main(args):
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--img_src', help='Source of image(s). Can be file or directory', type=str)
-    parser.add_argument('--out_dir', help='Where to store images', default='/is/cluster/fast/achatterjee/visuals', type=str)
+    parser.add_argument('--img_src', help='Source of image(s). Can be file or directory', default='./demo_out', type=str)
+    parser.add_argument('--out_dir', help='Where to store images', default='./demo_out', type=str)
     parser.add_argument('--model_path', help='Path to best model weights', type=str)
     parser.add_argument('--mesh_colour', help='Colour of the mesh', nargs='+', type=int, default=[130, 130, 130, 255])
     parser.add_argument('--annot_colour', help='Colour of the mesh', nargs='+', type=int, default=[0, 255, 0, 255])
