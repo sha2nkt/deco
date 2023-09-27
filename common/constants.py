@@ -1,7 +1,5 @@
-import os
 from os.path import join
 
-# curr_dir = os.path.dirname(os.path.abspath(__file__))
 smpl_dir = '/is/cluster/fast/achatterjee/dca_contact/'
 DIST_MATRIX_PATH = 'data/smpl/smpl_neutral_geodesic_dist.npy'
 SMPL_MEAN_PARAMS = join(smpl_dir, 'data/smpl_mean_params.npz')
@@ -15,7 +13,7 @@ IMG_NORM_MEAN = [0.485, 0.456, 0.406]
 IMG_NORM_STD = [0.229, 0.224, 0.225]
 
 # Output folder to save test/train npz files
-DATASET_NPZ_PATH = '/ps/scratch/ps_shared/stripathi/deco/4agniv/Datasets'
+DATASET_NPZ_PATH = './data/Datasets'
 CONTACT_MAPPING_PATH = '/ps/scratch/ps_shared/stripathi/deco/4agniv/essentials/models_utils/'
 
 # Path to test/train npz files

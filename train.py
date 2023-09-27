@@ -1,8 +1,6 @@
 import torch
-from torch.utils.data import Dataset, DataLoader
-from tqdm import tqdm
+from torch.utils.data import DataLoader
 import os
-import wandb
 
 from train.trainer_step import TrainStepper
 from train.base_trainer import trainer, evaluator
@@ -10,7 +8,6 @@ from data.base_dataset import BaseDataset
 from data.mixed_dataset import MixedDataset
 from models.deco import DECO
 from utils.config import parse_args, run_grid_search_experiments
-from utils.get_cfg import convert_to_dict
 
 def train(hparams):
     deco_model = DECO(hparams.TRAINING.ENCODER, device)
@@ -74,8 +71,6 @@ if __name__ == '__main__':
         args,
         script='train.py',
     )
-
-    wandb.init(project=hparams.PROJECT_NAME, name=hparams.EXP_NAME, config=convert_to_dict(hparams))
 
     if torch.cuda.is_available():
         device = torch.device('cuda')

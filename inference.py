@@ -1,5 +1,3 @@
-# Sample run: python inference_single_image2mesh.py --img_src /is/cluster/work/achatterjee/prox/flipped/MPH112_00034_01/s001_frame_00001__00.00.00.027.jpg --out_dir /is/cluster/work/achatterjee/vis_check --model_path /is/cluster/fast/achatterjee/weights/prox/No_PAL/hrnet/tuning/prox_hrnet_tuning_optimizer.lr-5e-05_best.pth
-
 import torch
 import os
 import glob
@@ -85,7 +83,6 @@ def create_scene(mesh, img, focal_length=500, camera_center=250, img_res=500):
     mesh_images = []
 
     # resize input image to fit the mesh image height
-    # print(img.shape)
     img_height = img_res
     img_width = int(img_height * img.shape[1] / img.shape[0])
     img = cv2.resize(img, (img_width, img_height))
@@ -142,7 +139,7 @@ def main(args):
 
     deco_model = initiate_model(args)
     
-    SMPL_MODEL_DIR = '/is/cluster/fast/achatterjee/dca_contact/data/smpl/smpl_neutral_tpose.ply'
+    SMPL_MODEL_DIR = './data/smpl/smpl_neutral_tpose.ply'
     
     for img_name in images:
         img = cv2.imread(img_name)
