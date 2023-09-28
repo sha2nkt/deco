@@ -5,7 +5,7 @@
 > [Shashank Tripathi](https://sha2nkt.github.io/), [Agniv Chatterjee](https://ac5113.github.io/), [Jean-Claude Passy](https://is.mpg.de/person/jpassy), [Hongwei Yi](https://xyyhw.top/), [Dimitrios Tzionas](https://ps.is.mpg.de/person/dtzionas), [Michael J. Black](https://ps.is.mpg.de/person/black)<br />
 > *IEEE International Conference on Computer Vision (ICCV), 2023*
 
-[![arXiv](https://img.shields.io/badge/arXiv-2305.20091-00ff00.svg)]()  [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://deco.is.tue.mpg.de/)     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()  [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)]()
+[![arXiv](https://img.shields.io/badge/arXiv-2309.15273-00ff00.svg)](https://arxiv.org/abs/2309.15273)  [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://deco.is.tue.mpg.de/)     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()  [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)]()
 
 ![teaser](assets/teaser.png)
 
