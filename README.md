@@ -9,6 +9,33 @@
 
 ![teaser](assets/teaser.png)
 
+## Installation and Setup
+a. First, clone the repo. Then, we recommend creating a clean [conda](https://docs.conda.io/) environment, activating it and installing torch and torchvision, as follows:
+```shell
+git clone https://github.com/sha2nkt/deco.git
+cd deco
+conda create -n deco python=3.9 -y
+conda activate deco
+pip install torch==1.13.0+cu117 torchvision==0.14.0+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
+```
+Please adjust the CUDA version as required.
+
+b. Install PyTorch3D from source. Users may also refer to [PyTorch3D-install](https://github.com/facebookresearch/pytorch3d/blob/main/INSTALL.md) for more details.
+However, our tests show that installing using ``conda`` sometimes runs into dependency conflicts.
+Hence, users may alternatively install Pytorch3D from source following the steps below.
+```shell
+git clone https://github.com/facebookresearch/pytorch3d.git
+cd pytorch3d
+pip install .
+cd ..
+```
+
+c. Install the other dependancies and download the required data.
+```bash
+pip install -r requirements.txt
+bash fetch_data.sh
+```
+
 ## Run demo on images
 The following command will run DECO on all images in the specified `--img_src`, and save rendering and colored mesh in `--out_dir`. The `--model_path` flag is used to specify the specific checkpoint being used. Additionally, the base mesh color and the color of predicted contact annotation can be specified using the `--mesh_colour` and `--annot_colour` flags respectively. 
 ```bash
@@ -22,7 +49,6 @@ Download the [training data]() to `./data/Datasets/` and place them as outlined 
 ```
 python train.py --cfg cfg_hot.yml
 ```
-Checkpoints and logs will be saved to `./logs/`.
 
 ## Evaluation
 To run evaluation, run the following snippet

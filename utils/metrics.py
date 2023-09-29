@@ -85,8 +85,8 @@ def acc_precision_recall_f1score(gt, pred):
 
 def det_error_metric(pred, gt):
     
-    # gt = gt.numpy()
-    # pred = pred.numpy()
+    gt = gt.detach().cpu()
+    pred = pred.detach().cpu()
 
     dist_matrix = torch.tensor(DIST_MATRIX)
 
