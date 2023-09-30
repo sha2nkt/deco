@@ -1,4 +1,5 @@
 import torch
+from torchvision.transforms import Normalize
 import os
 import glob
 import argparse
@@ -12,6 +13,7 @@ import trimesh
 import pyrender
 
 from models.deco import DECO
+from common import constants
 
 os.environ['PYOPENGL_PLATFORM'] = 'egl'
 
@@ -140,13 +142,14 @@ def main(args):
     deco_model = initiate_model(args)
     
     SMPL_MODEL_DIR = './data/smpl/smpl_neutral_tpose.ply'
+    normalize_img = Normalize(mean=constants.IMG_NORM_MEAN, std=constants.IMG_NORM_STD)
     
     for img_name in images:
         img = cv2.imread(img_name)
         img = cv2.resize(img, (256, 256), cv2.INTER_CUBIC)
-        img = img.transpose(2,0,1)/255.0 
-        img = img[np.newaxis,:,:,:]
-        img = torch.tensor(img, dtype = torch.float32).to(device)
+        normal_img = img.transpose(2,0,1)/255.0 
+        normal_img = normal_img[np.newaxis,:,:,:]
+        normal_img = normalize_img(torch.tensor(normal_img, dtype = torch.float32)).to(device)
 
         cont, _, _ = deco_model(img)
         cont = cont.detach().cpu().numpy().squeeze()
@@ -154,11 +157,6 @@ def main(args):
         for indx, i in enumerate(cont):
             if i >= 0.5:
                 cont_smpl.append(indx)
-
-        img = img.detach().cpu().numpy()
-        img = np.transpose(img[0], (1, 2, 0))
-        img = img * 255
-        img = img.astype(np.uint8)
         
         contact_smpl = np.zeros((1, 1, 6890))
         contact_smpl[0][0][cont_smpl] = 1
