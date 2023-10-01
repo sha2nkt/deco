@@ -41,7 +41,7 @@ The following command will run DECO on all images in the specified `--img_src`, 
 ```bash
 python inference.py \
     --img_src example_images \
-    --out_dir demo_out \
+    --out_dir demo_out
 ```
 
 ## Training and Evaluation
