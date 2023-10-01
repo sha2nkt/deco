@@ -44,17 +44,30 @@ python inference.py \
     --out_dir demo_out \
 ```
 
-## Training
-Download the [training data]() to `./data/Datasets/` and place them as outlined in the directory structure, then start training using the following command:
-```
-python train.py --cfg cfg_hot.yml
-```
+## Training and Evaluation
 
-## Evaluation
-To run evaluation, run the following snippet
+We release 3 versions of the DECO model:
+<ol>
+    <li> DECO-HRNet (<em> Best performing model </em>) </li>
+    <li> DECO-HRNet w/o context branches </li>
+    <li> DECO-Swin </li>
+</ol>
+
+The checkpoint files for 2. and 3. can be obtained [here](https://keeper.mpdl.mpg.de/d/92f52e22f0004fabaddb/). However, please note that these models have been trained solely on the RICH dataset. 
+We recommend using the first DECO version.
+
+### Training
+Please make the necessary changes to the config file being used (cfg_hot.yml, in the example below) and then start training using the following command:
 
 ```bash
-python tester.py --cfg cfg_test.yml
+python train.py --cfg configs/cfg_hot.yml
+```
+
+### Evaluation
+To run evaluation, please make the necessary changes to the config file being used and run the following snippet:
+
+```bash
+python tester.py --cfg configs/cfg_test.yml
 ```
 
 ## Citing
