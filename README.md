@@ -57,18 +57,21 @@ The checkpoint files for versions 2 and 3 can be obtained [here](https://keeper.
 We recommend using the first DECO version.
 
 ### Training
-Please make the necessary changes to the config file being used (```cfg_hot.yml```, in the example below) and then start training using the following command:
+Please first run ```get_training_data.sh``` which will download the npz files of the datasets. Make the necessary changes to the config file being used (```cfg_hot.yml```, in the example below) and then start training using the following command:
 
 ```bash
 python train.py --cfg configs/cfg_hot.yml
 ```
 
 ### Evaluation
-To run evaluation, please make the necessary changes to the config file being used and run the following snippet:
+To run evaluation, please make the necessary changes to the config file being used and run the following command:
 
 ```bash
 python tester.py --cfg configs/cfg_test.yml
 ```
+
+### Training on custom datasets
+To train on custom datasets, please create a npz file following the structures of [these](https://keeper.mpdl.mpg.de/d/aa565394a09b4b0880a1/), and place them in ```data/Datasets```. For creating the scene segmentations, we have used [Mask2Former](https://github.com/facebookresearch/Mask2Former), and for the part segmentation, the [sample script](https://github.com/sha2nkt/deco/blob/main/scripts/datascripts/get_part_seg_mask.py) can be used. Please also add the dataset names and paths in ```train.py```, ```data/base_dataset.py```, ```common/constants.py``` and other required files.
 
 ## Citing
 If you find this code useful for your research, please consider citing the following paper:
