@@ -53,11 +53,11 @@ We release 3 versions of the DECO model:
     <li> DECO-Swin </li>
 </ol>
 
-The checkpoint files for 2. and 3. can be obtained [here](https://keeper.mpdl.mpg.de/d/92f52e22f0004fabaddb/). However, please note that these models have been trained solely on the RICH dataset. 
+The checkpoint files for versions 2 and 3 can be obtained [here](https://keeper.mpdl.mpg.de/d/92f52e22f0004fabaddb/). However, please note that these models have been trained solely on the RICH dataset. 
 We recommend using the first DECO version.
 
 ### Training
-Please make the necessary changes to the config file being used (cfg_hot.yml, in the example below) and then start training using the following command:
+Please make the necessary changes to the config file being used (```cfg_hot.yml```, in the example below) and then start training using the following command:
 
 ```bash
 python train.py --cfg configs/cfg_hot.yml
