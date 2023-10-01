@@ -141,7 +141,7 @@ def main(args):
 
     deco_model = initiate_model(args)
     
-    SMPL_MODEL_DIR = './data/smpl/smpl_neutral_tpose.ply'
+    smpl_path = os.path.join(constants.SMPL_MODEL_DIR, 'smpl_neutral_tpose.ply')
     normalize_img = Normalize(mean=constants.IMG_NORM_MEAN, std=constants.IMG_NORM_STD)
     
     for img_name in images:
@@ -151,7 +151,7 @@ def main(args):
         normal_img = normal_img[np.newaxis,:,:,:]
         normal_img = normalize_img(torch.tensor(normal_img, dtype = torch.float32)).to(device)
 
-        cont, _, _ = deco_model(img)
+        cont, _, _ = deco_model(normal_img)
         cont = cont.detach().cpu().numpy().squeeze()
         cont_smpl = []
         for indx, i in enumerate(cont):
@@ -161,7 +161,7 @@ def main(args):
         contact_smpl = np.zeros((1, 1, 6890))
         contact_smpl[0][0][cont_smpl] = 1
 
-        body_model_smpl = trimesh.load(SMPL_MODEL_DIR, process=False)
+        body_model_smpl = trimesh.load(smpl_path, process=False)
         for vert in range(body_model_smpl.visual.vertex_colors.shape[0]):
             body_model_smpl.visual.vertex_colors[vert] = args.mesh_colour
         body_model_smpl.visual.vertex_colors[cont_smpl] = args.annot_colour

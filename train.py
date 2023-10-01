@@ -10,9 +10,9 @@ from models.deco import DECO
 from utils.config import parse_args, run_grid_search_experiments
 
 def train(hparams):
-    deco_model = DECO(hparams.TRAINING.ENCODER, device)
+    deco_model = DECO(hparams.TRAINING.ENCODER, hparams.TRAINING.CONTEXT, device)
 
-    solver = TrainStepper(deco_model, hparams.OPTIMIZER.LR, hparams.TRAINING.LOSS_WEIGHTS, hparams.TRAINING.PAL_LOSS_WEIGHTS, device)
+    solver = TrainStepper(deco_model, hparams.TRAINING.CONTEXT, hparams.OPTIMIZER.LR, hparams.TRAINING.LOSS_WEIGHTS, hparams.TRAINING.PAL_LOSS_WEIGHTS, device)
 
     vb_f1 = 0
     start_ep = 0

@@ -26,6 +26,7 @@ hparams.OPTIMIZER.NUM_UPDATE_LR = 10
 # Training hparams
 hparams.TRAINING = CN()
 hparams.TRAINING.ENCODER = 'hrnet'
+hparams.TRAINING.CONTEXT = True
 hparams.TRAINING.NUM_EPOCHS = 50
 hparams.TRAINING.SUMMARY_STEPS = 100
 hparams.TRAINING.CHECKPOINT_EPOCHS = 5

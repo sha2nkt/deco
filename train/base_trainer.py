@@ -33,8 +33,9 @@ def evaluator(val_loader, solver, hparams, epoch=0, dataset_name='Unknown', norm
     val_epoch_cont_f1 = np.zeros(dataset_size)
     val_epoch_fp_geo_err = np.zeros(dataset_size)
     val_epoch_fn_geo_err = np.zeros(dataset_size)
-    val_epoch_sem_iou = np.zeros(dataset_size)
-    val_epoch_part_iou = np.zeros(dataset_size)
+    if hparams.TRAINING.CONTEXT:
+        val_epoch_sem_iou = np.zeros(dataset_size)
+        val_epoch_part_iou = np.zeros(dataset_size)
 
     val_epoch_cont_loss = np.zeros(dataset_size)
     
@@ -59,30 +60,34 @@ def evaluator(val_loader, solver, hparams, epoch=0, dataset_name='Unknown', norm
         assert torch.any(has_contact_3d == 0) == False, 'has_contact_3d tensor has 0 values'
 
         contact_labels_3d_pred = output['contact_labels_3d_pred']
-        sem_mask_gt = output['sem_mask_gt']
-        sem_seg_pred = output['sem_mask_pred']
-        part_mask_gt = output['part_mask_gt']
-        part_seg_pred = output['part_mask_pred']
+        if hparams.TRAINING.CONTEXT:
+            sem_mask_gt = output['sem_mask_gt']
+            sem_seg_pred = output['sem_mask_pred']
+            part_mask_gt = output['part_mask_gt']
+            part_seg_pred = output['part_mask_pred']
 
         cont_pre, cont_rec, cont_f1 = precision_recall_f1score(contact_labels_3d, contact_labels_3d_pred)
         fp_geo_err, fn_geo_err = det_error_metric(contact_labels_3d_pred, contact_labels_3d)
-        sem_iou = metric(sem_mask_gt, sem_seg_pred)
-        part_iou = metric(part_mask_gt, part_seg_pred)
+        if hparams.TRAINING.CONTEXT:
+            sem_iou = metric(sem_mask_gt, sem_seg_pred)
+            part_iou = metric(part_mask_gt, part_seg_pred)
 
         val_epoch_cont_pre[step * batch_size:step * batch_size + curr_batch_size] = cont_pre.cpu().numpy()
         val_epoch_cont_rec[step * batch_size:step * batch_size + curr_batch_size] = cont_rec.cpu().numpy()
         val_epoch_cont_f1[step * batch_size:step * batch_size + curr_batch_size] = cont_f1.cpu().numpy()
         val_epoch_fp_geo_err[step * batch_size:step * batch_size + curr_batch_size] = fp_geo_err.cpu().numpy()
         val_epoch_fn_geo_err[step * batch_size:step * batch_size + curr_batch_size] = fn_geo_err.cpu().numpy()
-        val_epoch_sem_iou[step * batch_size:step * batch_size + curr_batch_size] = sem_iou.cpu().numpy()
-        val_epoch_part_iou[step * batch_size:step * batch_size + curr_batch_size] = part_iou.cpu().numpy()
+        if hparams.TRAINING.CONTEXT:
+            val_epoch_sem_iou[step * batch_size:step * batch_size + curr_batch_size] = sem_iou.cpu().numpy()
+            val_epoch_part_iou[step * batch_size:step * batch_size + curr_batch_size] = part_iou.cpu().numpy()
         
         total_time += time_taken
 
         # wandb logging every summary_steps steps
         if step % hparams.VALIDATION.SUMMARY_STEPS == 0:
-            rend = gen_render(output, normalize)
-            rend_images.append(rend)
+            if hparams.TRAINING.CONTEXT:
+                rend = gen_render(output, normalize)
+                rend_images.append(rend)
             if log_wandb: 
                 iteration_summaries(batch, output, losses, dataset_name, mode='val')
 
@@ -91,14 +96,15 @@ def evaluator(val_loader, solver, hparams, epoch=0, dataset_name='Unknown', norm
     eval_dict['cont_f1'] = np.sum(val_epoch_cont_f1) / dataset_size
     eval_dict['fp_geo_err'] = np.sum(val_epoch_fp_geo_err) / dataset_size
     eval_dict['fn_geo_err'] = np.sum(val_epoch_fn_geo_err) / dataset_size
-    eval_dict['sem_iou'] = np.sum(val_epoch_sem_iou) / dataset_size
-    eval_dict['part_iou'] = np.sum(val_epoch_part_iou) / dataset_size
-    eval_dict['images'] = rend_images
+    if hparams.TRAINING.CONTEXT:
+        eval_dict['sem_iou'] = np.sum(val_epoch_sem_iou) / dataset_size
+        eval_dict['part_iou'] = np.sum(val_epoch_part_iou) / dataset_size
+        eval_dict['images'] = rend_images
     
     total_time /= dataset_size
     
     if log_wandb: 
-        epoch_summaries(eval_dict, dataset_name, mode='val', epoch=epoch)
+        epoch_summaries(eval_dict, hparams.TRAINING.CONTEXT, dataset_name, mode='val', epoch=epoch)
         epoch_summaries_best(eval_dict, dataset_name, mode='val')
 
     val_epoch_cont_loss = np.sum(val_epoch_cont_loss) / dataset_size
@@ -110,13 +116,14 @@ def iteration_summaries(input_batch, output, losses, dataset_name='train-data', 
     for loss_name, val in losses.items():
         wandb.log({f'{mode}_loss/{dataset_name}__' + loss_name: val})
 
-def epoch_summaries(output, dataset_name, mode='val', epoch=0):
+def epoch_summaries(output, context, dataset_name, mode='val', epoch=0):
     for out_key, val in output.items():
         if out_key != f'images':
             wandb.log({f'{mode}/{dataset_name}__' + out_key: val,
                        f'epoch': epoch})
-    wandb.log({f'{mode}/{dataset_name}__' + 'images': [wandb.Image(img) for img in output['images']],
-               f'epoch': epoch})
+    if context:
+        wandb.log({f'{mode}/{dataset_name}__' + 'images': [wandb.Image(img) for img in output['images']],
+                f'epoch': epoch})
 
 def epoch_summaries_best(output, dataset_name, mode='val'):
     for out_key, val in output.items():
@@ -131,7 +138,3 @@ def epoch_summaries_best(output, dataset_name, mode='val'):
         except KeyError:
             if out_key != f'images':
                 wandb.run.summary[f'{mode}Best/{dataset_name}__' + out_key] = wandb.run.summary[f'{mode}/{dataset_name}__' + out_key]
-
-
-
-
