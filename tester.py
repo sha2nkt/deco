@@ -50,7 +50,7 @@ if __name__ == '__main__':
     for ds in hparams.VALIDATION.DATASETS:
         if ds in ['rich', 'prox']:
             val_datasets.append(BaseDataset(ds, 'val', model_type='smplx', normalize=hparams.DATASET.NORMALIZE_IMAGES))
-        elif ds in ['hot', 'hot_nosupport', 'dca']:
+        elif ds in ['damon']:
             val_datasets.append(BaseDataset(ds, 'val', model_type='smpl', normalize=hparams.DATASET.NORMALIZE_IMAGES))
         else:
             raise ValueError('Dataset not supported')

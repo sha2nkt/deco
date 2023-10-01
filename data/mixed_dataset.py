@@ -17,7 +17,7 @@ class MixedDataset(torch.utils.data.Dataset):
         for ds in self.dataset_list:
             if ds in ['rich', 'prox']:
                 self.datasets.append(BaseDataset(ds, mode, model_type='smplx', **kwargs))
-            elif ds in ['hot', 'hot_nosupport', 'dca']:
+            elif ds in ['damon']:
                 self.datasets.append(BaseDataset(ds, mode, model_type='smpl', **kwargs))
             else:
                 raise ValueError('Dataset not supported')
