@@ -21,7 +21,7 @@ def test(hparams):
     # Run testing
     for test_loader in val_loaders:
         dataset_name = test_loader.dataset.dataset
-        test_dict, total_time = evaluator(test_loader, solver, hparams, 0, dataset_name, return_dict=True, log_wandb=False)
+        test_dict, total_time = evaluator(test_loader, solver, hparams, 0, dataset_name, return_dict=True)
 
         print('Test Contact Precision: ', test_dict['cont_precision'])
         print('Test Contact Recall: ', test_dict['cont_recall'])

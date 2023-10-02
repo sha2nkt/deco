@@ -1,5 +1,4 @@
 import torch
-from torchvision.transforms import Normalize
 import os
 import glob
 import argparse
@@ -23,7 +22,7 @@ else:
     device = torch.device('cpu')
 
 def initiate_model(args):
-    deco_model = DECO('hrnet', device)
+    deco_model = DECO('hrnet', True, device)
 
     logger.info(f'Loading weights from {args.model_path}')
     checkpoint = torch.load(args.model_path)
@@ -142,21 +141,25 @@ def main(args):
     deco_model = initiate_model(args)
     
     smpl_path = os.path.join(constants.SMPL_MODEL_DIR, 'smpl_neutral_tpose.ply')
-    normalize_img = Normalize(mean=constants.IMG_NORM_MEAN, std=constants.IMG_NORM_STD)
     
     for img_name in images:
         img = cv2.imread(img_name)
         img = cv2.resize(img, (256, 256), cv2.INTER_CUBIC)
-        normal_img = img.transpose(2,0,1)/255.0 
-        normal_img = normal_img[np.newaxis,:,:,:]
-        normal_img = normalize_img(torch.tensor(normal_img, dtype = torch.float32)).to(device)
+        img = img.transpose(2,0,1)/255.0
+        img = img[np.newaxis,:,:,:]
+        img = torch.tensor(img, dtype = torch.float32).to(device)
 
-        cont, _, _ = deco_model(normal_img)
+        cont, _, _ = deco_model(img)
         cont = cont.detach().cpu().numpy().squeeze()
         cont_smpl = []
         for indx, i in enumerate(cont):
             if i >= 0.5:
                 cont_smpl.append(indx)
+        
+        img = img.detach().cpu().numpy()		
+        img = np.transpose(img[0], (1, 2, 0))		
+        img = img * 255		
+        img = img.astype(np.uint8)
         
         contact_smpl = np.zeros((1, 1, 6890))
         contact_smpl[0][0][cont_smpl] = 1

@@ -1,6 +1,5 @@
 from tqdm import tqdm
 from utils.metrics import metric, precision_recall_f1score, det_error_metric
-import wandb
 import torch
 import numpy as np
 from vis.visualize import gen_render
@@ -15,13 +14,10 @@ def trainer(epoch, train_loader, solver, hparams, compute_metrics=False):
     iterator = tqdm(enumerate(train_loader), total=length, leave=False, desc=f'Training Epoch: {epoch}/{total_epochs}')
     for step, batch in iterator:
         losses, output = solver.optimize(batch)
-        # wandb logging every summary_steps steps
-        if step % hparams.TRAINING.SUMMARY_STEPS == 0:
-            iteration_summaries(batch, output, losses, mode='train')
     return losses, output
 
 @torch.no_grad()
-def evaluator(val_loader, solver, hparams, epoch=0, dataset_name='Unknown', normalize=True, return_dict=False, log_wandb=True):
+def evaluator(val_loader, solver, hparams, epoch=0, dataset_name='Unknown', normalize=True, return_dict=False):
     total_epochs = hparams.TRAINING.NUM_EPOCHS
 
     batch_size = val_loader.batch_size
@@ -83,13 +79,11 @@ def evaluator(val_loader, solver, hparams, epoch=0, dataset_name='Unknown', norm
         
         total_time += time_taken
 
-        # wandb logging every summary_steps steps
+        # logging every summary_steps steps
         if step % hparams.VALIDATION.SUMMARY_STEPS == 0:
             if hparams.TRAINING.CONTEXT:
                 rend = gen_render(output, normalize)
                 rend_images.append(rend)
-            if log_wandb: 
-                iteration_summaries(batch, output, losses, dataset_name, mode='val')
 
     eval_dict['cont_precision'] = np.sum(val_epoch_cont_pre) / dataset_size
     eval_dict['cont_recall'] = np.sum(val_epoch_cont_rec) / dataset_size
@@ -102,39 +96,8 @@ def evaluator(val_loader, solver, hparams, epoch=0, dataset_name='Unknown', norm
         eval_dict['images'] = rend_images
     
     total_time /= dataset_size
-    
-    if log_wandb: 
-        epoch_summaries(eval_dict, hparams.TRAINING.CONTEXT, dataset_name, mode='val', epoch=epoch)
-        epoch_summaries_best(eval_dict, dataset_name, mode='val')
 
     val_epoch_cont_loss = np.sum(val_epoch_cont_loss) / dataset_size
     if return_dict:
         return eval_dict, total_time
     return eval_dict['cont_f1']
-
-def iteration_summaries(input_batch, output, losses, dataset_name='train-data', mode='train'):
-    for loss_name, val in losses.items():
-        wandb.log({f'{mode}_loss/{dataset_name}__' + loss_name: val})
-
-def epoch_summaries(output, context, dataset_name, mode='val', epoch=0):
-    for out_key, val in output.items():
-        if out_key != f'images':
-            wandb.log({f'{mode}/{dataset_name}__' + out_key: val,
-                       f'epoch': epoch})
-    if context:
-        wandb.log({f'{mode}/{dataset_name}__' + 'images': [wandb.Image(img) for img in output['images']],
-                f'epoch': epoch})
-
-def epoch_summaries_best(output, dataset_name, mode='val'):
-    for out_key, val in output.items():
-        try:
-            if out_key != f'images':
-                if 'geo_err' in out_key:
-                    if wandb.run.summary[f'{mode}Best/{dataset_name}__' + out_key] > wandb.run.summary[f'{mode}/{dataset_name}__' + out_key]:
-                        wandb.run.summary[f'{mode}Best/{dataset_name}__' + out_key] = wandb.run.summary[f'{mode}/{dataset_name}__' + out_key]
-                else:
-                    if wandb.run.summary[f'{mode}Best/{dataset_name}__' + out_key] < wandb.run.summary[f'{mode}/{dataset_name}__' + out_key]:
-                        wandb.run.summary[f'{mode}Best/{dataset_name}__' + out_key] = wandb.run.summary[f'{mode}/{dataset_name}__' + out_key]
-        except KeyError:
-            if out_key != f'images':
-                wandb.run.summary[f'{mode}Best/{dataset_name}__' + out_key] = wandb.run.summary[f'{mode}/{dataset_name}__' + out_key]

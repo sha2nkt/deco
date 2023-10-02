@@ -1,7 +1,7 @@
 EXP_NAME: 'rich_hrnet_testing'
 PROJECT_NAME: 'DECO_RICH_Testing'
 OUTPUT_DIR: 'deco_results'
-CONDOR_DIR: '/is/cluster/fast/achatterjee/Tuning/rich'
+CONDOR_DIR: ''
 DATASET:
   BATCH_SIZE: 16
   NUM_WORKERS: 4
@@ -19,9 +19,8 @@ TRAINING:
   CHECKPOINT_EPOCHS: 5
   DATASETS: ['rich']
   DATASET_MIX_PDF: ['1.']
-  DATASET_ROOT_PATH: '/is/cluster/fast/achatterjee/Datasets/rich/npzs'
-  BEST_MODEL_PATH: '/is/cluster/fast/achatterjee/weights/prox_rich/prox_rich_cropped_hrnet_tuning_dataset.normalizeimages-True_optimizer.lr-5e-05_training.lossweights-10.0_best.pth'
-  LOSS_WEIGHTS: [1.]
+  DATASET_ROOT_PATH: ''
+  BEST_MODEL_PATH: ''
   PAL_LOSS_WEIGHTS: 0.0
 VALIDATION:
   SUMMARY_STEPS: 1000
