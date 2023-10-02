@@ -35,7 +35,7 @@ cd ..
 3. Install the other dependancies and download the required data.
 ```bash
 pip install -r requirements.txt
-bash fetch_data.sh
+sh fetch_data.sh
 ```
 
 4. Please download [SMPL](https://smpl.is.tue.mpg.de/) (version 1.1.0) and [SMPL-X](https://smpl-x.is.tue.mpg.de/) (v1.1) files into the data folder. Please rename the SMPL files to ```SMPL_FEMALE.pkl```, ```SMPL_MALE.pkl``` and ```SMPL_NEUTRAL.pkl```. The directory structure for the ```data``` folder has been elaborated below:
