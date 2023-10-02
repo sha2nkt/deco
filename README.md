@@ -38,6 +38,33 @@ pip install -r requirements.txt
 bash fetch_data.sh
 ```
 
+4. Please download [SMPL](https://smpl.is.tue.mpg.de/) (version 1.1.0) and [SMPL-X](https://smpl-x.is.tue.mpg.de/) (v1.1) files into the data folder. Please rename the SMPL files to ```SMPL_FEMALE.pkl```, ```SMPL_MALE.pkl``` and ```SMPL_NEUTRAL.pkl```. The directory structure for the ```data``` folder has been elaborated below:
+
+├── preprocess
+├── smpl
+│   ├── SMPL_FEMALE.pkl
+│   ├── SMPL_MALE.pkl
+│   ├── SMPL_NEUTRAL.pkl
+│   ├── smpl_neutral_geodesic_dist.npy
+│   ├── smpl_neutral_tpose.ply
+│   ├── smplpix_vertex_colors.npy
+├── smplx
+│   ├── SMPLX_FEMALE.npz
+│   ├── SMPLX_FEMALE.pkl
+│   ├── SMPLX_MALE.npz
+│   ├── SMPLX_MALE.pkl
+│   ├── SMPLX_NEUTRAL.npz
+│   ├── SMPLX_NEUTRAL.pkl
+│   ├── smplx_neutral_tpose.ply
+├── weights
+│   ├── pose_hrnet_w32_256x192.pth
+├── J_regressor_extra.npy
+├── base_dataset.py
+├── mixed_dataset.py
+├── smpl_partSegmentation_mapping.pkl
+├── smpl_vert_segmentation.json
+└── smplx_vert_segmentation.json
+
 ## Run demo on images
 The following command will run DECO on all images in the specified `--img_src`, and save rendering and colored mesh in `--out_dir`. The `--model_path` flag is used to specify the specific checkpoint being used. Additionally, the base mesh color and the color of predicted contact annotation can be specified using the `--mesh_colour` and `--annot_colour` flags respectively. 
 ```bash
