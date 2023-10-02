@@ -11,4 +11,4 @@ wget https://keeper.mpdl.mpg.de/f/9cb970221b1e45d185b8/?dl=1 --max-redirect=2 --
 
 # Downloading existing checkpoint
 mkdir datasets
-wget https://keeper.mpdl.mpg.de/f/6f2e2258558f46ceb269/?dl=1 --max-redirect=2 --trust-server-names  && tar -xvf Release_Datasets.tar.gz --directory datasets && rm -r Release_Datasets.tar.gz
+wget https://keeper.mpdl.mpg.de/f/81c3ec9997dd440b8db3/?dl=1 --max-redirect=2 --trust-server-names  && tar -xvf Release_Datasets.tar.gz --directory datasets && rm -r Release_Datasets.tar.gz

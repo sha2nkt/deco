@@ -12,7 +12,7 @@ IMG_NORM_MEAN = [0.485, 0.456, 0.406]
 IMG_NORM_STD = [0.229, 0.224, 0.225]
 
 # Output folder to save test/train npz files
-DATASET_NPZ_PATH = 'data/Datasets'
+DATASET_NPZ_PATH = 'datasets/Release_Datasets'
 CONTACT_MAPPING_PATH = 'data/conversions'
 
 # Path to test/train npz files
