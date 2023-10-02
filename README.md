@@ -1,4 +1,4 @@
-# DECO: Dense Estimation of 3D Human-Scene Contact in the Wild
+# DECO: Dense Estimation of 3D Human-Scene Contact in the Wild [ICCV 2023 (Oral)]
 
 > Code repository for the paper:  
 > [**DECO: Dense Estimation of 3D Human-Scene Contact in the Wild**](https://openaccess.thecvf.com/content/ICCV2023/html/Tripathi_DECO_Dense_Estimation_of_3D_Human-Scene_Contact_In_The_Wild_ICCV_2023_paper.html)  
@@ -9,8 +9,10 @@
 
 ![teaser](assets/teaser.png)
 
+[[Project Page](https://deco.is.tue.mpg.de)] [[Paper](https://arxiv.org/abs/2309.15273)] [[Video](https://www.youtube.com/watch?v=o7MLobqAFTQ)] [[Poster](https://www.dropbox.com/scl/fi/kvhpfnkvga2pt19ayko8u/ICCV2023_DECO_Poster_v2.pptx?rlkey=ihbf3fi6u9j0ha9x1gfk2cwd0&dl=0)] [[License](https://deco.is.tue.mpg.de/license.html)] [[Contact](mailto:deco@tue.mpg.de)]
+
 ## Installation and Setup
-a. First, clone the repo. Then, we recommend creating a clean [conda](https://docs.conda.io/) environment, activating it and installing torch and torchvision, as follows:
+1. First, clone the repo. Then, we recommend creating a clean [conda](https://docs.conda.io/) environment, activating it and installing torch and torchvision, as follows:
 ```shell
 git clone https://github.com/sha2nkt/deco.git
 cd deco
@@ -20,7 +22,7 @@ pip install torch==1.13.0+cu117 torchvision==0.14.0+cu117 --extra-index-url http
 ```
 Please adjust the CUDA version as required.
 
-b. Install PyTorch3D from source. Users may also refer to [PyTorch3D-install](https://github.com/facebookresearch/pytorch3d/blob/main/INSTALL.md) for more details.
+2. Install PyTorch3D from source. Users may also refer to [PyTorch3D-install](https://github.com/facebookresearch/pytorch3d/blob/main/INSTALL.md) for more details.
 However, our tests show that installing using ``conda`` sometimes runs into dependency conflicts.
 Hence, users may alternatively install Pytorch3D from source following the steps below.
 ```shell
@@ -30,7 +32,7 @@ pip install .
 cd ..
 ```
 
-c. Install the other dependancies and download the required data.
+3. Install the other dependancies and download the required data.
 ```bash
 pip install -r requirements.txt
 bash fetch_data.sh
