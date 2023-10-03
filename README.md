@@ -85,7 +85,7 @@ We release 3 versions of the DECO model:
 </ol>
 
 All the checkpoints have been downloaded to ```checkpoints```. 
-However, please note that these models have been trained solely on the RICH dataset. 
+However, please note that versions 2 and 3 have been trained solely on the RICH dataset. 
 We recommend using the first DECO version.
 
 ### Training
