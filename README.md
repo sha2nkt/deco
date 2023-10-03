@@ -106,7 +106,6 @@ python train.py --cfg configs/cfg_train.yml
 ```
 
 ### Training on custom datasets
-To train on custom datasets, please create a npz file following the structures of [these](https://keeper.mpdl.mpg.de/d/aa565394a09b4b0880a1/), and place them in ```data/Datasets```. For creating the scene segmentations, we have used [Mask2Former](https://github.com/facebookresearch/Mask2Former), and for the part segmentation, the [sample script](https://github.com/sha2nkt/deco/blob/main/scripts/datascripts/get_part_seg_mask.py) can be used. Please also add the dataset names and paths in ```train.py```, ```data/base_dataset.py```, ```common/constants.py``` and other required files.
 
 To train on other datasets, please follow these steps:
 <ol>
