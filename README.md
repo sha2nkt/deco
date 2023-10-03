@@ -112,7 +112,7 @@ To train on other datasets, please follow these steps:
 2. Please create scene segmentation maps, if not available. We have used [Mask2Former](https://github.com/facebookresearch/Mask2Former) in our work.
 3. For creating the part segmentation maps, this [sample script](https://github.com/sha2nkt/deco/blob/main/scripts/datascripts/get_part_seg_mask.py) can be referred to.
 4. Add the dataset name(s) to ```train.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/train.py#L83)), ```tester.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/tester.py#L51)) and ```data/mixed_dataset.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/data/mixed_dataset.py#L17)), according to the body model being used (SMPL/SMPL-X)
-5. Add the path(s) to ```common/constants.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/common/constants.py#L19)).
+5. Add the path(s) to the dataset npz(s) to ```common/constants.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/common/constants.py#L19)).
 6. Finally, change ```TRAINING.DATASETS``` and ```VALIDATION.DATASETS``` in the config file and you're good to go!
 
 ## Citing
