@@ -96,7 +96,8 @@ python tester.py --cfg configs/cfg_test.yml
 ```
 
 ### Training
-The datasets have been downloaded to ```datasets/Release_Datasets```. The config provided (```cfg_train.yml```) is set to train and evaluate on all three datasets: DAMON, RICH and PROX. To change this, please change the value of the key ```TRAINING.DATASETS``` and ```VALIDATION.DATASETS``` in the config (please also change ```TRAINING.DATASET_MIX_PDF``` as required). 
+The datasets have been downloaded to ```datasets/Release_Datasets```. <br>
+The config provided (```cfg_train.yml```) is set to train and evaluate on all three datasets: DAMON, RICH and PROX. To change this, please change the value of the key ```TRAINING.DATASETS``` and ```VALIDATION.DATASETS``` in the config (please also change ```TRAINING.DATASET_MIX_PDF``` as required). <br>
 Also, the best checkpoint is stored by default at ```checkpoints/Other_Checkpoints```.
 Please run the following command to start training of the DECO model:
 
