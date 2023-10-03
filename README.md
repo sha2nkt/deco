@@ -85,7 +85,7 @@ We release 3 versions of the DECO model:
 </ol>
 
 All the checkpoints have been downloaded to ```checkpoints```. 
-However, please note that versions 2 and 3 have been trained solely on the RICH dataset. 
+However, please note that versions 2 and 3 have been trained solely on the RICH dataset. <br>
 We recommend using the first DECO version.
 
 ### Evaluation
@@ -107,6 +107,16 @@ python train.py --cfg configs/cfg_train.yml
 
 ### Training on custom datasets
 To train on custom datasets, please create a npz file following the structures of [these](https://keeper.mpdl.mpg.de/d/aa565394a09b4b0880a1/), and place them in ```data/Datasets```. For creating the scene segmentations, we have used [Mask2Former](https://github.com/facebookresearch/Mask2Former), and for the part segmentation, the [sample script](https://github.com/sha2nkt/deco/blob/main/scripts/datascripts/get_part_seg_mask.py) can be used. Please also add the dataset names and paths in ```train.py```, ```data/base_dataset.py```, ```common/constants.py``` and other required files.
+
+To train on other datasets, please follow these steps:
+<ol>
+    <li> Please create an npz of the dataset, following the structure of the datasets in ```datasets/Release_Datasets``` with the corresponding keys and values. </li>
+    <li> Please create scene segmentation maps, if not available. We have used [Mask2Former](https://github.com/facebookresearch/Mask2Former). </li>
+    <li> For creating the part segmentation maps, this [sample script](https://github.com/sha2nkt/deco/blob/main/scripts/datascripts/get_part_seg_mask.py) can be referred to. </li>
+    <li> Add the dataset name(s) to ```train.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/train.py#L83)), ```tester.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/tester.py#L51)) and ```data/mixed_dataset.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/data/mixed_dataset.py#L17)), according to the body model being used (SMPL/SMPL-X) </li>
+    <li> Add the path(s) to ```common/constants.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/common/constants.py#L19)). </li>
+    <li> Finally, change ```TRAINING.DATASETS``` and ```VALIDATION.DATASETS``` in the config file and you're good to go! </li>
+</ol>
 
 ## Citing
 If you find this code useful for your research, please consider citing the following paper:
