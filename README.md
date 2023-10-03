@@ -89,10 +89,10 @@ However, please note that versions 2 and 3 have been trained solely on the RICH 
 We recommend using the first DECO version.
 
 ### Training
-The datasets have been downloaded to ```datasets/Release_Datasets```. Please make the necessary changes to the config file being used (```cfg_hot.yml```, in the example below) and then start training using the following command:
+The datasets have been downloaded to ```datasets/Release_Datasets```. Please make the necessary changes to the config file being used (```cfg_train.yml```, in the example below) and then start training using the following command:
 
 ```bash
-python train.py --cfg configs/cfg_hot.yml
+python train.py --cfg configs/cfg_train.yml
 ```
 
 ### Evaluation
