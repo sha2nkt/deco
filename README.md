@@ -88,18 +88,20 @@ All the checkpoints have been downloaded to ```checkpoints```.
 However, please note that versions 2 and 3 have been trained solely on the RICH dataset. 
 We recommend using the first DECO version.
 
-### Training
-The datasets have been downloaded to ```datasets/Release_Datasets```. Please make the necessary changes to the config file being used (```cfg_train.yml```, in the example below) and then start training using the following command:
-
-```bash
-python train.py --cfg configs/cfg_train.yml
-```
-
 ### Evaluation
-To run evaluation, please make the necessary changes to the config file being used and run the following command:
+To run evaluation on the DAMON dataset, please run the following command:
 
 ```bash
 python tester.py --cfg configs/cfg_test.yml
+```
+
+### Training
+The datasets have been downloaded to ```datasets/Release_Datasets```. The config provided (```cfg_train.yml```) is set to train and evaluate on all three datasets: DAMON, RICH and PROX. To change this, please change the value of the key ```TRAINING.DATASETS``` and ```VALIDATION.DATASETS``` in the config (please also change ```TRAINING.DATASET_MIX_PDF``` as required). 
+Also, the best checkpoint is stored by default at ```checkpoints/Other_Checkpoints```.
+Please run the following command to start training of the DECO model:
+
+```bash
+python train.py --cfg configs/cfg_train.yml
 ```
 
 ### Training on custom datasets

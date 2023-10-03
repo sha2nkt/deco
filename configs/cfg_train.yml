@@ -1,11 +1,11 @@
-EXP_NAME: 'hot_exp_test'
-PROJECT_NAME: 'DECO_HOT_Testing'
+EXP_NAME: 'demo_train'
+PROJECT_NAME: 'DECO_demo_training'
 OUTPUT_DIR: 'deco_results'
 CONDOR_DIR: ''
 DATASET:
   BATCH_SIZE: 4
   NUM_WORKERS: 8
-  NORMALIZE_IMAGES: False
+  NORMALIZE_IMAGES: [True]
 OPTIMIZER:
   TYPE: 'adam'
   LR: [1e-5]
@@ -13,17 +13,17 @@ OPTIMIZER:
 TRAINING:
   ENCODER: 'hrnet'
   CONTEXT: [True]
-  NUM_EPOCHS: 2
+  NUM_EPOCHS: 100
   NUM_EARLY_STOP: 10
   SUMMARY_STEPS: 5
   CHECKPOINT_EPOCHS: 5
-  DATASETS: ['hot', 'rich']
-  DATASET_MIX_PDF: ['0.5', '0.5'] # should sum to 1.0 unless you want to weight by dataset size
+  DATASETS: ['damon', 'rich', 'prox']
+  DATASET_MIX_PDF: ['0.4', '0.3', '0.3'] # should sum to 1.0 unless you want to weight by dataset size
   DATASET_ROOT_PATH: ''
-  BEST_MODEL_PATH: ''
+  BEST_MODEL_PATH: './checkpoints/Other_Checkpoints/demo_train.pth'
   LOSS_WEIGHTS: 1.
-  PAL_LOSS_WEIGHTS: 0.0
+  PAL_LOSS_WEIGHTS: 0.01
 VALIDATION:
   SUMMARY_STEPS: 5
-  DATASETS: ['hot', 'rich']
-  MAIN_DATASET: 'hot'
+  DATASETS: ['damon', 'rich', 'prox']
+  MAIN_DATASET: 'damon'

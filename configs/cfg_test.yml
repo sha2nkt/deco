@@ -1,5 +1,5 @@
-EXP_NAME: 'rich_hrnet_testing'
-PROJECT_NAME: 'DECO_RICH_Testing'
+EXP_NAME: 'damon_hrnet_testing'
+PROJECT_NAME: 'DECO_DAMON_Testing'
 OUTPUT_DIR: 'deco_results'
 CONDOR_DIR: ''
 DATASET:
@@ -17,12 +17,12 @@ TRAINING:
   NUM_EARLY_STOP: 10
   SUMMARY_STEPS: 5
   CHECKPOINT_EPOCHS: 5
-  DATASETS: ['rich']
+  DATASETS: ['damon']
   DATASET_MIX_PDF: ['1.']
   DATASET_ROOT_PATH: ''
-  BEST_MODEL_PATH: ''
+  BEST_MODEL_PATH: './checkpoints/Release_Checkpoint/deco_best.pth'
   PAL_LOSS_WEIGHTS: 0.0
 VALIDATION:
   SUMMARY_STEPS: 1000
-  DATASETS: ['rich']
-  MAIN_DATASET: 'rich'
+  DATASETS: ['damon']
+  MAIN_DATASET: 'damon'
