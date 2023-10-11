@@ -92,7 +92,7 @@ All the checkpoints have been downloaded to ```checkpoints```.
 However, please note that versions 2 and 3 have been trained solely on the RICH dataset. <br>
 We recommend using the first DECO version.
 
-The dataset npz files have been downloaded to ```datasets/Release_Datasets```. Please download the actual DAMON data and place them in ```datasets``` following the instructions given.
+The dataset npz files have been downloaded to ```datasets/Release_Datasets```. Please download the actual DAMON data and place them in ```datasets``` following the instructions given in the website.
 
 ### Evaluation
 To run evaluation on the DAMON dataset, please run the following command:
