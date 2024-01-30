@@ -55,7 +55,7 @@ Each participant is allowed to submit maximum 5 times per day and 100 submission
 
 Participants must pack their results into one pkl file named as `results.pkl` and submit it as zip file. The pkl data should be organized as follows:
 
-```json
+```code
 {
     "image_id": { # image_id is the image name in the DAMON test set
 
