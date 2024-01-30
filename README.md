@@ -78,10 +78,10 @@ sh fetch_data.sh
 
 Follow the instructions on the _Downloads_ page to download the DAMON dataset. The provided metadata in the `npz` files is described as follows: 
 - `imgname`: relative path to the image file
-- `pose` : SMPL pose parameters inferred from [CLIFF](https://github.com/haofanwang/CLIFF)
-- `transl` : SMPL root translation inferred from [CLIFF](https://github.com/haofanwang/CLIFF)
-- `shape` : SMPL shape parameters inferred from [CLIFF](https://github.com/haofanwang/CLIFF)
-- `cam_k` : camera intrinsic matrix inferred from [CLIFF](https://github.com/haofanwang/CLIFF)
+- `pose` : SMPL pose parameters inferred from [CLIFF](https://github.com/huawei-noah/noah-research/tree/master/CLIFF)
+- `transl` : SMPL root translation inferred from [CLIFF](https://github.com/huawei-noah/noah-research/tree/master/CLIFF)
+- `shape` : SMPL shape parameters inferred from [CLIFF](https://github.com/huawei-noah/noah-research/tree/master/CLIFF)
+- `cam_k` : camera intrinsic matrix inferred from [CLIFF](https://github.com/huawei-noah/noah-research/tree/master/CLIFF)
 - `polygon_2d_contact`: 2D contact annotation from [HOT](https://hot.is.tue.mpg.de/)
 - `contact_label`: 3D contact annotations
 - `scene_seg`: path to the scene segmentation map from [Mask2Former](https://github.com/facebookresearch/Mask2Former)
