@@ -13,6 +13,7 @@
 
 ## News :triangular_flag_on_post:
 
+- [2024/01/31] The DAMON contact labels in SMPL-X format have been released. Please refer to [this](#convert-damon) for the conversion script.
 - [2023/10/12] The [huggingface demo](https://huggingface.co/spaces/ac5113/DECO) has been released.
 - [2023/10/10] The [colab demo](https://colab.research.google.com/drive/1fTQdI2AHEKlwYG9yIb2wqicIMhAa067_?usp=sharing) has been released. Huggingface demo coming soon...
 
@@ -22,7 +23,7 @@
 git clone https://github.com/sha2nkt/deco.git
 cd deco
 conda create -n deco python=3.9 -y
-conda activate deco
+conda activate decoConverting DAMON contact labels to SMPL-X format (and back)
 pip install torch==1.13.0+cu117 torchvision==0.14.0+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
 ```
 Please adjust the CUDA version as required.
@@ -30,12 +31,12 @@ Please adjust the CUDA version as required.
 2. Install PyTorch3D from source. Users may also refer to [PyTorch3D-install](https://github.com/facebookresearch/pytorch3d/blob/main/INSTALL.md) for more details.
 However, our tests show that installing using ``conda`` sometimes runs into dependency conflicts.
 Hence, users may alternatively install Pytorch3D from source following the steps below.
-```shell
+```shellconvert-damon
 git clone https://github.com/facebookresearch/pytorch3d.git
 cd pytorch3d
-pip install .
+pip install .section-2
 cd ..
-```
+```Converting DAMON contact labels to SMPL-X format (and back)
 
 3. Install the other dependancies and download the required data.
 ```bash
@@ -63,7 +64,7 @@ sh fetch_data.sh
 │   ├── SMPLX_NEUTRAL.pkl
 │   ├── smplx_neutral_tpose.ply
 ├── weights
-│   ├── pose_hrnet_w32_256x192.pth
+│   ├── pose_hrnet_w32_256x192.pthConverting DAMON contact labels to SMPL-X format (and back)
 ├── J_regressor_extra.npy
 ├── base_dataset.py
 ├── mixed_dataset.py
@@ -90,16 +91,15 @@ Follow the instructions on the _Downloads_ page to download the DAMON dataset. T
 
 The order of values is the same for all the keys. 
 
+<a name="convert-damon"></a>
 #### Converting DAMON contact labels to SMPL-X format (and back)
 
 To convert contact labels from SMPL to SMPL-X format and vice-versa, run the following command
-
 ```bash
 python reformat_contact.py \
     --contact_npz datasets/Release_Datasets/damon/hot_dca_trainval.npz \
     --input_type 'smpl'
 ```
-
 
 ## Run demo on images
 The following command will run DECO on all images in the specified `--img_src`, and save rendering and colored mesh in `--out_dir`. The `--model_path` flag is used to specify the specific checkpoint being used. Additionally, the base mesh color and the color of predicted contact annotation can be specified using the `--mesh_colour` and `--annot_colour` flags respectively. 
