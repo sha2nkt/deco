@@ -13,7 +13,7 @@
 
 ## News :triangular_flag_on_post:
 
-- [2024/01/31] The DAMON contact labels in SMPL-X format have been released. Please refer to [this](#convert-damon) for the conversion script.
+- [2024/01/31] The DAMON contact labels in SMPL-X format have been released. [This](#convert-damon) is the conversion script.
 - [2023/10/12] The [huggingface demo](https://huggingface.co/spaces/ac5113/DECO) has been released.
 - [2023/10/10] The [colab demo](https://colab.research.google.com/drive/1fTQdI2AHEKlwYG9yIb2wqicIMhAa067_?usp=sharing) has been released. Huggingface demo coming soon...
 
