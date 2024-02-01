@@ -23,7 +23,7 @@
 git clone https://github.com/sha2nkt/deco.git
 cd deco
 conda create -n deco python=3.9 -y
-conda activate decoConverting DAMON contact labels to SMPL-X format (and back)
+conda activate deco
 pip install torch==1.13.0+cu117 torchvision==0.14.0+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
 ```
 Please adjust the CUDA version as required.

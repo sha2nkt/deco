@@ -32,8 +32,7 @@ The winner of each track will be invited to give a talk in our <a href="https://
 CVPR'24 Rhobin Workshop</a>.
 
 ## About the data
-.
-}
+
 The DAMON dataset is used for all the two tracks. DAMON is a collection of vertex-level 3D contact labels on the SMPL/SMPL-X mesh paired with color images of people in unconstrained environments with a wide diversity of human-scene and human-object interactions.
 
 Both direct contact estimation and methods estimating contact by thresholding the geometric distance between reconstruction human and scene/objects are encouraged to participate.
