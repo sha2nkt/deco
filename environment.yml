@@ -1,0 +1,17 @@
+name: deco_p39
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - loguru
+  - monai==1.0.1
+  - scikit-learn
+  - scikit-image
+  - matplotlib
+  - pandas
+  - configargparse
+  - numpy==1.23.1
+  - yacs
+  - networkx==2.5
+  - charset-normalizer==3.1.0
