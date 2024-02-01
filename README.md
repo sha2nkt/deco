@@ -96,7 +96,7 @@ The order of values is the same for all the keys.
 
 To convert contact labels from SMPL to SMPL-X format and vice-versa, run the following command
 ```bash
-python reformat_contact.py \
+python reformat_contacts.py \
     --contact_npz datasets/Release_Datasets/damon/hot_dca_trainval.npz \
     --input_type 'smpl'
 ```
