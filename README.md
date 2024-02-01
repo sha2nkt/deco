@@ -34,7 +34,7 @@ Hence, users may alternatively install Pytorch3D from source following the steps
 ```shellconvert-damon
 git clone https://github.com/facebookresearch/pytorch3d.git
 cd pytorch3d
-pip install .section-2
+pip install .
 cd ..
 ```Converting DAMON contact labels to SMPL-X format (and back)
 
