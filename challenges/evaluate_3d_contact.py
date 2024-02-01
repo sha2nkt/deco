@@ -31,7 +31,7 @@ def evaluate(pred_dict, gt_dict):
     result_dict['cont_recall'] = torch.mean(cont_rec).numpy()
     result_dict['cont_f1'] = torch.mean(cont_f1).numpy()
     result_dict['fp_geo_err'] = torch.mean(fp_geo_err).numpy()
-    result_dict['fn_geo_err'] = torch.mean(fn_geo_err).numpy()
+    # result_dict['fn_geo_err'] = torch.mean(fn_geo_err).numpy()
 
     # print the results dict
     for key in result_dict.keys():
