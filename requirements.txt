@@ -1,6 +1,6 @@
 opencv-python
 loguru
-monai
+monai==1.0.1
 pyrender==0.1.33
 smplx==0.1.28
 scikit-learn
@@ -13,3 +13,5 @@ flatten_dict
 chumpy
 numpy==1.23.1
 yacs
+networkx==2.5
+charset-normalizer==3.1.0
