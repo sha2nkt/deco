@@ -31,12 +31,12 @@ Please adjust the CUDA version as required.
 2. Install PyTorch3D from source. Users may also refer to [PyTorch3D-install](https://github.com/facebookresearch/pytorch3d/blob/main/INSTALL.md) for more details.
 However, our tests show that installing using ``conda`` sometimes runs into dependency conflicts.
 Hence, users may alternatively install Pytorch3D from source following the steps below.
-```shellconvert-damon
+```shell
 git clone https://github.com/facebookresearch/pytorch3d.git
 cd pytorch3d
 pip install .
 cd ..
-```Converting DAMON contact labels to SMPL-X format (and back)
+```
 
 3. Install the other dependancies and download the required data.
 ```bash
@@ -64,7 +64,7 @@ sh fetch_data.sh
 │   ├── SMPLX_NEUTRAL.pkl
 │   ├── smplx_neutral_tpose.ply
 ├── weights
-│   ├── pose_hrnet_w32_256x192.pthConverting DAMON contact labels to SMPL-X format (and back)
+│   ├── pose_hrnet_w32_256x192.pth
 ├── J_regressor_extra.npy
 ├── base_dataset.py
 ├── mixed_dataset.py
