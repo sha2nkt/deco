@@ -25,7 +25,6 @@ def evaluate(pred_dict, gt_dict):
     fp_geo_err, fn_geo_err = det_error_metric(contact_labels_3d_pred, contact_labels_3d)
 
     # results dict
-    import ipdb; ipdb.set_trace()
     result_dict = {}
     result_dict['cont_precision'] = torch.mean(cont_pre).numpy()
     result_dict['cont_recall'] = torch.mean(cont_rec).numpy()
