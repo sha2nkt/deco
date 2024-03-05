@@ -17,8 +17,8 @@ TRAINING:
   NUM_EARLY_STOP: 10
   SUMMARY_STEPS: 5
   CHECKPOINT_EPOCHS: 5
-  DATASETS: ['damon', 'rich', 'prox']
-  DATASET_MIX_PDF: ['0.4', '0.3', '0.3'] # should sum to 1.0 unless you want to weight by dataset size
+  DATASETS: ['damon']
+  DATASET_MIX_PDF: ['1.0'] # should sum to 1.0 unless you want to weight by dataset size
   DATASET_ROOT_PATH: ''
   BEST_MODEL_PATH: './checkpoints/Other_Checkpoints/demo_train.pth'
   LOSS_WEIGHTS: 1.
