@@ -25,5 +25,5 @@ TRAINING:
   PAL_LOSS_WEIGHTS: 0.01
 VALIDATION:
   SUMMARY_STEPS: 5
-  DATASETS: ['damon', 'rich', 'prox']
+  DATASETS: ['damon']
   MAIN_DATASET: 'damon'
