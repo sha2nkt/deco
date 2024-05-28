@@ -13,6 +13,7 @@
 
 ## News :triangular_flag_on_post:
 
+- [2024/05/28] :eight_pointed_black_star: Damon object-wise contacts are released in SMPL and SMPL-X format. Please refer [here](#damon-data-description) for details. 
 - [2024/01/31] The DAMON contact labels in SMPL-X format have been released. [This](#convert-damon) is the conversion script.
 - [2023/10/12] The [huggingface demo](https://huggingface.co/spaces/ac5113/DECO) has been released.
 - [2023/10/10] The [colab demo](https://colab.research.google.com/drive/1fTQdI2AHEKlwYG9yIb2wqicIMhAa067_?usp=sharing) has been released. Huggingface demo coming soon...
@@ -72,7 +73,7 @@ sh fetch_data.sh
 ├── smpl_vert_segmentation.json
 └── smplx_vert_segmentation.json
 ```
-
+<a name="damon-data-description"></a>
 ### Download the DAMON dataset
 
 ⚠️ Register account on the [DECO website](https://deco.is.tue.mpg.de/register.php), and then use your username and password to login to the _Downloads_ page.
@@ -86,6 +87,8 @@ Follow the instructions on the _Downloads_ page to download the DAMON dataset. T
 - `polygon_2d_contact`: 2D contact annotation from [HOT](https://hot.is.tue.mpg.de/)
 - `contact_label`: 3D contact annotations on the SMPL mesh
 - `contact_label_smplx`: 3D contact annotation on the SMPL-X mesh
+- `contact_label_objectwise`: 3D contact annotations split into separate object labels on the SMPL mesh
+- `contact_label_smplx_objectwise`: 3D contact annotations split into separate object labels on the SMPL-X mesh
 - `scene_seg`: path to the scene segmentation map from [Mask2Former](https://github.com/facebookresearch/Mask2Former)
 - `part_seg`: path to the body part segmentation map
 
