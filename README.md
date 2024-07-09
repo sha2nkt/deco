@@ -1,5 +1,6 @@
 # DECO: Dense Estimation of 3D Human-Scene Contact in the Wild [ICCV 2023 (Oral)]
 
+
 > Code repository for the paper:  
 > [**DECO: Dense Estimation of 3D Human-Scene Contact in the Wild**](https://openaccess.thecvf.com/content/ICCV2023/html/Tripathi_DECO_Dense_Estimation_of_3D_Human-Scene_Contact_In_The_Wild_ICCV_2023_paper.html)  
 > [Shashank Tripathi](https://sha2nkt.github.io/), [Agniv Chatterjee](https://ac5113.github.io/), [Jean-Claude Passy](https://is.mpg.de/person/jpassy), [Hongwei Yi](https://xyyhw.top/), [Dimitrios Tzionas](https://ps.is.mpg.de/person/dtzionas), [Michael J. Black](https://ps.is.mpg.de/person/black)<br />
@@ -152,6 +153,103 @@ To train on other datasets, please follow these steps:
 4. Add the dataset name(s) to ```train.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/train.py#L83)), ```tester.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/tester.py#L51)) and ```data/mixed_dataset.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/data/mixed_dataset.py#L17)), according to the body model being used (SMPL/SMPL-X)
 5. Add the path(s) to the dataset npz(s) to ```common/constants.py``` ([these lines](https://github.com/sha2nkt/deco/blob/d5233ecfad1f51b71a50a78c0751420067e82c02/common/constants.py#L19)).
 6. Finally, change ```TRAINING.DATASETS``` and ```VALIDATION.DATASETS``` in the config file and you're good to go!
+
+
+## Docker/Singularity Installation
+
+The Images are available on DockerHub at: ```https://hub.docker.com/repository/docker/pscontainer/deco```.
+
+### 1. Make the Singularity/Docker Environment:
+
+You can launch with Singularity:
+```
+singularity build --sandbox /tmp/conda_sandbox docker://pscontainer/deco:cuda117
+```
+
+You can launch with Docker:
+```
+docker run --gpus all -it --rm pscontainer/deco:cuda117
+```
+
+
+### 2. Enter the Singularity Environment
+```
+singularity shell --writable --nv -f -c --pwd=/tmp/home -H /tmp/home /tmp/conda_sandbox/
+```
+
+In order to save the code and models downloaded, you can use the ```--writable-tmpfs``` and move to a path where the models persist out of a temporary folder.
+
+```
+singularity shell --writable-tmpfs --nv --pwd=/tmp/home -H /tmp/home /tmp/conda_sandbox/
+```
+
+With Docker:
+
+```
+docker run --gpus all -it --rm \
+  -v deco_data:/persistent_data \
+  -w /persistent_data \
+  -e HOME=/persistent_data \
+  pscontainer/deco:cuda117
+```
+
+### 3. Starting the download of all environment
+```
+git clone https://github.com/sha2nkt/deco.git
+```
+
+You need to register on "https://deco.is.tue.mpg.de/" to access the weights of the model, and on “https://hot.is.tue.mpg.de/" to have access to the data. 
+
+You can now launch the starter script that will install all of the needed to launch deco on your device.
+```bash
+bash starter.sh
+```
+
+
+### 4. Launching the Model from the Apptainer Container
+We must first leave the container.
+``` exit ```
+
+
+#### Make a .sif file
+
+```
+singularity build ./deco.sif /tmp/conda_sandbox/
+```
+
+
+You can verify that the installation was done correctly by launching the following script on the container. 
+We make an output directory:
+``` mkdir outputDECO```
+
+You can verify that the installation was done correctly by launching the following script on the container.
+we make the ```DecoLaunch.sh```
+
+```bash
+cd /path/to/deco
+
+eval "$(conda shell.bash hook)"
+
+conda activate deco
+
+python inference.py \
+    --img_src example_images \
+    --out_dir /container/output/
+```
+
+### Run the demo on a video
+
+```
+singularity exec --bind ./outputDECO:/container/output deco.sif ./DecoLaunch.sh
+```
+
+### Important Notes
+
+- Ensure you have the necessary GPU drivers and CUDA installed on your host system.
+- The Docker version requires Docker with GPU support to be installed.
+- The Singularity version requires Singularity to be installed on your system.
+- Make sure to adjust paths and directories as needed for your specific setup.
+
 
 ## Citing
 If you find this code useful for your research, please consider citing the following paper:
