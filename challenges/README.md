@@ -69,11 +69,30 @@ should be organized as follows:
 }
 ```
 
+For evaluating semantic (object-wise) contact estimation, the `results.pkl` should be organized as follows:
+```code
+{
+    "image_id": { # image_id is the image name as in the DAMON test set npz. The evaluation will fail if it doesn't match.
+
+        # results for generalized 3D contact prediction from 2D images.
+        "sem_contact_vids": {
+            obj_1: [vid_1, vid_2, vid_K], # list of SMPL vertices with contact on obj1
+            obj_2: [vid_1, vid_2, vid_N], # list of SMPL vertices with contact on obj2
+            ...
+    },
+    ...
+}
+```
+obj_1, obj_2, ... are the object names in the DAMON dataset, with spaces replaced by '_'. We ignore the "supporting" label.
+The evaluation will fail if the object names do not match. Please make sure to replace all spaces in object names with underscores.
+
 ## Evaluation
 
-You can run the evaluation code provided here. Please follow the steps below.
+We provide evaluation scripts for two tracks:
+1. Generalized 3D contact prediction from 2D images: This track evaluates contact on the full body between all human-object and human-scene contacts
+2. Semantic (object-wise) contact estimation: This track evaluates per-object contact on the full body, between each human-object pair
 
-To run the code, you can run evaluation code as follows, specifying the path to the ```RESULT_PKL``` file:
+You can run evaluation code for generalized 3D contact estimation as follows, specifying the path to the ```RESULT_PKL``` file:
 
 ```bash
 python evaluate_3d_contact.py --gt_pkl [GT_PKL] --pred_pkl [RESULT_PKL]
@@ -82,7 +101,20 @@ python evaluate_3d_contact.py --gt_pkl [GT_PKL] --pred_pkl [RESULT_PKL]
 For example, to evaluate the baseline DECO model, you can run:
 
 ```bash 
+unzip examples/semantic_contact_pkls.zip -d examples
 python evaluate_3d_contact.py --pred_pkl examples/deco_pred_contacts.pkl --gt_pkl examples/deco_gt_contacts.pkl
+```
+
+You can run evaluation code for semantic 3D contact estimation as follows, specifying the path to the ```RESULT_PKL``` file:
+
+```bash
+python evaluate_semantic_contact.py --gt_pkl [GT_PKL] --pred_pkl [RESULT_PKL]
+```
+
+For example, to evaluate the baseline DECO model, you can run:
+
+```bash 
+python evaluate_semantic_contact.py --pred_pkl examples/deco_pred_semantic_contacts.pkl --gt_pkl examples/deco_gt_semantic_contacts.pkl
 ```
 
 ## Citations

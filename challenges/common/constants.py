@@ -33,3 +33,40 @@ DATASET_FILES = {
         'prox': join(DATASET_NPZ_PATH, 'prox/prox_val_smplx_ds4.npz'),
     },
 }
+
+categorization_unordered = {
+    "transportation": [
+        'motorcycle', 'bicycle', 'boat', 'car', 'truck', 'bus', 'train', 'airplane',],
+    "accessories": [
+        'backpack', 'tie', 'handbag', 'baseball glove'],
+    "furniture": [
+        'bench', 'chair', 'couch', 'bed', 'toilet', 'dining table'],
+    'everyday objects': [
+        'book', 'umbrella', 'cell phone', 'laptop', 'kite', 'suitcase', 'bottle', 'remote',
+        'toothbrush', 'teddy bear', 'scissors', 'keyboard', 'hair drier', 'traffic light',
+        'fire hydrant', 'stop sign', 'tv', 'vase', 'parking meter', 'clock', 'potted plant',
+        'mouse'],
+    'sports equipment': [
+        'frisbee', 'sports ball', 'tennis racket', 'baseball bat',
+        'skateboard', 'snowboard', 'skis', 'surfboard'],
+    'food items': [
+        'banana', 'cake', 'apple', 'carrot', 'pizza', 'donut', 'hot dog',
+        'sandwich', 'broccoli', 'orange'],
+    'kitchen appliances': [
+        'knife', 'spoon', 'cup', 'wine glass', 'oven', 'fork', 'bowl',
+        'refrigerator', 'toaster', 'sink', 'microwave']}
+
+object_names = ['motorcycle', 'bicycle', 'boat', 'car', 'truck', 'bus', 'train', 'airplane', 'backpack', 'tie',
+                'handbag', 'baseball glove', 'bench', 'chair', 'couch', 'bed', 'toilet', 'dining table', 'book',
+                'umbrella', 'cell phone', 'laptop', 'kite', 'suitcase', 'bottle', 'remote', 'toothbrush', 'teddy bear',
+                'scissors', 'keyboard', 'hair drier', 'traffic light', 'fire hydrant', 'stop sign', 'tv', 'vase',
+                'parking meter', 'clock', 'potted plant', 'mouse', 'frisbee', 'sports ball', 'tennis racket',
+                'baseball bat', 'skateboard', 'snowboard', 'skis', 'surfboard', 'banana', 'cake', 'apple', 'carrot',
+                'pizza', 'donut', 'hot dog', 'sandwich', 'broccoli', 'orange', 'knife', 'spoon', 'cup', 'wine glass',
+                'oven', 'fork', 'bowl', 'refrigerator', 'toaster', 'sink', 'microwave']
+
+# replace spaces in object names with underscores
+object_names = [name.replace(' ', '_') for name in object_names]
+
+# replaces spaces in categorization_unordered values with underscores
+categorization_unordered = {key: [name.replace(' ', '_') for name in value] for key, value in categorization_unordered.items()}
